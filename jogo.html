@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="bonito.css">
 </head>
 <body>
-
+ 
+<div id="notificacao"></div>
+ 
 <div class="mesa-container">
+ 
+    <!-- ══ COLUNA ESQUERDA ══ -->
     <aside class="coluna-lateral">
         <div class="moldura-box" id="stacks-area">
             <div class="titulo-box">STACKS</div>
@@ -16,57 +20,86 @@
         </div>
         <div class="moldura-box guia-rapido">
             <div class="titulo-box">GUIA RÁPIDO</div>
-            <p>♥ Vida Inicial: 10</p>
-            <p>🕒 Turno: +1 Clock / +2 Cartas</p>
-            <small><i>Sem cartas na mão: dano direto!</i></small>
+            <p>♥ Vida inicial: 10</p>
+            <p>🃏 Primeiro turno: 5 cartas</p>
+            <p>🕒 Todo turno: +1 Clock / +2 Cartas</p>
+            <p>⚔ Custo por ataque: 1 Clock</p>
+            <small>Sem cartas na mão: dano direto!</small>
         </div>
     </aside>
-
+ 
+    <!-- ══ COLUNA CENTRAL ══ -->
     <main class="coluna-central">
         <header>
             <h1>FATEC DO CAOS</h1>
-            <p>- 30 CARTAS POR DECK -</p>
+            <p>— 30 CARTAS POR DECK • BATALHA DE TURNOS —</p>
         </header>
-
-        <div id="campo-inimigo" class="area-batalha"></div>
-        <div id="campo-batalha" class="area-batalha"></div>
-
+ 
+        <!-- Mão do inimigo (verso) -->
+        <div id="mao-inimigo"></div>
+ 
+        <!-- Campo do inimigo -->
+        <div id="campo-inimigo" class="area-batalha inimigo-area">
+            <span class="label-area">CARTAS NO CAMPO — INIMIGO</span>
+        </div>
+ 
+        <!-- Divisor central -->
+        <div class="divisor-central"></div>
+ 
+        <!-- Campo do jogador -->
+        <div id="campo-batalha" class="area-batalha jogador-area">
+            <span class="label-area">SUA MÃO</span>
+        </div>
+ 
+        <!-- Área inferior: mão + botão -->
         <div class="area-inferior">
             <div id="minha-mao"></div>
-            <button id="btnPassar" onclick="passarTurno()">PASSAR TURNO</button>
+            <button id="btnPassar" onclick="passarTurno()">PASSAR<br>TURNO</button>
         </div>
     </main>
-
+ 
+    <!-- ══ COLUNA DIREITA ══ -->
     <aside class="coluna-lateral">
         <div class="moldura-box" id="terreno-display">
             <div class="titulo-box">TERRENO</div>
             <span id="nomeTerreno">Sorteando...</span>
             <br><small id="efeitoTerreno"></small>
         </div>
-
+ 
+        <div class="moldura-box">
+            <div class="titulo-box">PILHA DE CARTAS</div>
+            <div class="pilha-visual">
+                <div class="pilha-carta"></div>
+                <div class="pilha-carta"></div>
+                <div class="pilha-carta"></div>
+            </div>
+            <div id="log-combate"></div>
+        </div>
+ 
         <div class="status-vertical">
             <div class="stat-card oponente">
-                <span class="stat-value" id="vidaInimigo">10</span>
                 <label>HP OPONENTE</label>
+                <span class="stat-value" id="vidaInimigo">10</span>
             </div>
-            
             <div class="stat-card jogador">
-                <span class="stat-value" id="minhaVida">10</span>
                 <label>SEU HP</label>
+                <span class="stat-value" id="minhaVida">10</span>
             </div>
-
             <div class="stat-card clock">
-                <span class="stat-value" id="meuClock">5</span>
                 <label>CLOCK (MANA)</label>
+                <span class="stat-value" id="meuClock">5</span>
             </div>
         </div>
-
+ 
         <div class="moldura-box descarte">
             <div class="titulo-box">DESCARTE</div>
+            <div class="pilha-visual">
+                <div class="pilha-carta" style="opacity:0.3"></div>
+            </div>
         </div>
     </aside>
 </div>
-
+ 
 <script src="cartas.js"></script>
 <script src="terrenos.js"></script>
 <script src="interface.js"></script>
